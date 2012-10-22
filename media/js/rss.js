@@ -47,6 +47,7 @@ function update_sentiment(data) {
 	      $('#features').append('<span title="'+title+'" class="'+class_+'">'+feature+'</span>&nbsp;');
 	    }
 	}
+        $('.label').css('cursor', 'help');
 }
 
 
