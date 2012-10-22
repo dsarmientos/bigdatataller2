@@ -27,7 +27,7 @@ def sentiment_analysis(request):
     return HttpResponse(
                 simplejson.dumps(
                     {'sentiment': '%0.2f' % sentiment_,
-                     'features': ' '.join((unicode(f) for f in features))}
+                     'features': '|'.join((unicode(f) for f in features))}
                 ),
                 mimetype='application/json')
 

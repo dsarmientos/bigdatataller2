@@ -21,15 +21,32 @@ function sentiment_analisys(text) {
 	'/sentiment/?',
 	{'text':text},
 	function(data) {
-		console.log(data.sentiment);
-		console.log(data.features);
-		$('#sentiment').html(data.sentiment);
-		$('#features').html(data.features);
-		$('#sentiment').parent().hide().fadeIn('slow');
-		$('#features').parent().hide().fadeIn('slow');
-		$('#review').hide().fadeIn('slow');
+	    update_sentiment(data);
+	    $('#sentiment_analysis').hide().fadeIn('slow');
+	    $('#review').hide().fadeIn('slow');
 	},
 	'json');
+}
+
+
+function update_sentiment(data) {
+	var sentiment = data.sentiment;
+        var badge_class = sentiment >= 0 ? 'success' : 'important';
+	if (sentiment == 0) { badge_class = 'inverse';}
+	$('#sentiment').html('<span class="badge badge-'+badge_class+'">'+sentiment+'</span>');
+	var features = data.features.split('|');
+        $('#features').empty();
+	for (var i in features) {
+	    var feature_tuple = features[i].split(',');
+	    var feature = feature_tuple[0].replace(/^[()]/, '').replace(/'/g, '');
+	    var polarity = parseInt(feature_tuple[1]);
+	    var label_class = polarity >= 0 ? 'success' : 'important';
+	    var class_ = 'label label-' + label_class;
+	    var title = 'Polarity: ' + polarity
+            if (!isNaN(polarity)) {
+	      $('#features').append('<span title="'+title+'" class="'+class_+'">'+feature+'</span>&nbsp;');
+	    }
+	}
 }
 
 
