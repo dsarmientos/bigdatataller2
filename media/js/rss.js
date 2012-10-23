@@ -4,12 +4,13 @@ $(document).ready(function() {
 
 
 function setup_ui() {
-    $('.item-title').css('cursor', 'pointer');
-    $(".item-title").bind('click',function(){
+    $('.item-title').parent().css('cursor', 'pointer');
+    $(".item-title").parent().bind('click',function(){
         clear_ui();
-	$(this).css('font-weight','bold');
-	var bottom_line = $(this).siblings('.item-bottom_line').html();
-	var description = $(this).siblings('.item-description').html();
+        $(this).parent().addClass('warning');
+	$(this).children('.item-title').css('font-weight', 'bold');
+	var bottom_line = $(this).children('.item-bottom_line').html();
+	var description = $(this).children('.item-description').html();
 	sentiment_analisys(bottom_line);
 	update_description(description);
     });
@@ -59,5 +60,6 @@ function update_description(description) {
 
 function clear_ui() {
 	$('.item-title').css('font-weight', 'normal');
+	$('.table tr').removeClass('warning');
 }
 
