@@ -1,5 +1,5 @@
 """
-WSGI config for tarea1 project.
+WSGI config for taller2 project.
 
 This module contains the WSGI application used by Django's development server
 and any production WSGI deployments. It should expose a module-level variable
@@ -14,8 +14,12 @@ framework.
 
 """
 import os
+import sys
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tarea1.settings")
+path = '/home/bigdata/taller2/src/'
+if path not in sys.path:
+    sys.path.append(path)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "taller2.settings")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION

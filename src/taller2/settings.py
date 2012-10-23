@@ -3,7 +3,7 @@ import os
 CURRENT_DIR = os.path.dirname(__file__)
 PARENT_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.path.pardir))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
